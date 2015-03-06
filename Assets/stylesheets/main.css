@@ -306,3 +306,6 @@ h1 {
     margin-top: 0;
     font-size: 11px;
 }
+.error_msg {
+    color: lightcoral;
+}
