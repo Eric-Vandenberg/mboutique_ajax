@@ -83,7 +83,11 @@ function validate_contact(){
         if(regex!==null){  //if there is a validation rule to check
             if(str.match(regex)===null){ //if there was a validation error
                 //alert($(this).attr('name')+":"+error_msg); //send error message
-                var error_div = $("<div/>").addClass('alert alert-danger').text(error_msg);
+                var error_div = $("<div/>").addClass('error_msg alert alert-danger alert-dismissible').text(error_msg);
+                var close_button = $("<button/>",{type:'button',class:'close',"data-dismiss":'alert','aria-label':'Close'});
+                var span = $("<span/>",{'aria-hidden':'true'}).html('&times;');
+                close_button.append(span);
+                error_div.append(close_button);
                 error_div.insertAfter($(this));
                 error_count++;  //increase error count
             }
