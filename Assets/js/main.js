@@ -17,7 +17,7 @@ var input_validation = {
         {regex: /^([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)@([0-9a-zA-Z]([-_\\.]*[0-9a-zA-Z]+)*)[\\.]([a-zA-Z]{2,9})$/,
          error_msg:"Invalid email"},
     phone: 
-        {regex: /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/,
+        {regex: /.+?\d{3,}.?/g,
          error_msg:"Invalid Phone Number"},
     subject: 
         {regex: /.{3,50}/,
@@ -83,8 +83,8 @@ function validate_contact(){
         if(regex!==null){  //if there is a validation rule to check
             if(str.match(regex)===null){ //if there was a validation error
                 //alert($(this).attr('name')+":"+error_msg); //send error message
-                var error_span = $("<span/>").addClass('error_msg').text(error_msg);
-                error_span.insertAfter($(this));
+                var error_div = $("<div/>").addClass('alert alert-danger').text(error_msg);
+                error_div.insertAfter($(this));
                 error_count++;  //increase error count
             }
             
@@ -93,7 +93,8 @@ function validate_contact(){
     });
     console.log("error count " +error_count);
     if(error_count==0){  //if no errors
-        alert("Message Sent!");   //trigger our form submission function
+        var success_div = $("<div/>").addClass('alert alert-success').text('Message Sent!');
+        success_div.insertAfter($('#submit_form'));
     }
     else {
         return false;  //return false, so that the form submit will fail
