@@ -20,7 +20,7 @@ var input_validation = {
         {regex: /^[(]{0,1}[0-9]{3}[)]{0,1}[-\s\.]{0,1}[0-9]{3}[-\s\.]{0,1}[0-9]{4}$/,
          error_msg:"Invalid Phone Number"},
     subject: 
-        {regex: /.{2,25}/,
+        {regex: /.{3,50}/,
          error_msg:"Please Enter a Subject"},
     comments: 
         {regex: /.{3,250}/,
@@ -93,7 +93,7 @@ function validate_contact(){
     });
     console.log("error count " +error_count);
     if(error_count==0){  //if no errors
-        send_message();   //trigger our form submission function
+        alert("Message Sent!");   //trigger our form submission function
     }
     else {
         return false;  //return false, so that the form submit will fail
